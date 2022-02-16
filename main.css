@@ -1,0 +1,409 @@
+:root {
+    --pale: #F0EDE5;
+    --pale-2: #E2DBCB;
+    --pink: #DB8480;
+    --green: #506C46;
+    --dark: #474747;
+    --pink-light: #FFD1C2;
+    --blue-light: #AFCBD5;
+    --green-light: #9BB690;
+}
+/* light-dark themes */
+@media (prefers-color-scheme: light) {
+    /* Light theme styles go here */
+    :root {
+        --link-colour: var(--green);
+        --background-colour: var(--pale);
+        --text-colour: var(--dark);
+        --extras-colour: var(--pink);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    /* Dark theme styles go here */
+    :root {
+        --link-colour: var(--blue-light);
+        --background-colour: var(--dark);
+        --text-colour: var(--pale-2);
+        --extras-colour: var(--pale-2);
+    }
+}
+
+/* Defaults */
+body {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    padding: 1.5em;
+    background-color: var(--background-colour);
+    color: var(--text-colour);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Georgia, Times, Times New Roman, serif;
+}
+
+h1 a {
+    color: var(--text-colour);
+}
+
+h2 {
+    font-size: 1.5em;
+    font-weight: 300;
+    margin-bottom: 0.5em;
+    font-style: italic;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+a {
+    text-decoration: none;
+    color: var(--link-colour);
+}
+
+a.active {
+    border-bottom: var(--link-colour) solid 1px;
+    padding-bottom: 0.5em;
+}
+
+div.box {
+    margin-bottom: 1.8em;
+}
+
+p {
+    text-align: justify;
+}
+
+.box::after {
+    border-top: 1px var(--extras-colour) dotted;
+}
+
+#write li span.tag {
+    border: 1px var(--extras-colour) solid;
+    color: var(--text-colour);
+}
+
+
+nav {
+    grid-area: nav;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0 auto 1em;
+    padding: 0;
+}
+
+nav a {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    padding: 0.8em;
+    margin: -0.8em;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 3;
+    grid-gap: 1em;
+    grid-template-areas:
+        "nav nav"
+        "name ."
+        "about about";
+    margin-bottom: 2em;
+}
+
+.header.page {
+    margin-bottom: 0.5em;
+}
+
+.name {
+    grid-area: name;
+    border: 1px var(--text-colour) solid;
+    padding: 0.5em;
+    display: inline-block;
+    text-align: right;
+    margin: 0;
+    justify-self: end;
+    max-width: 120px;
+}
+
+.name h1 {
+    display: inline-block;
+    margin: 0;
+    padding: 0.1em;
+}
+
+
+
+#main-page .about {
+    grid-area: about;
+    width: 65%;
+    justify-self: end;
+    margin-right: 2em;
+}
+
+#main-page .header picture {
+    grid-area: picture;
+    display: none;
+}
+
+.box::after {
+    content: "";
+    display: block;
+    margin: 0.8em 2.5em 0;
+}
+
+#write ul {
+    margin-bottom: 0.5em;
+    list-style: none;
+    padding: 0.5em;
+}
+
+#write li {
+    margin-bottom: 0.5em;
+    list-style: none;
+    padding-left: 0.5em;
+    line-height: 1.2em;
+}
+
+#write li span.tag {
+    border-radius: 8px;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 0.75em;
+    padding: 0em 0.5em 0.1em 0.5em;
+    margin-left: 0.5em;
+    line-height: 16px;
+}
+
+#photograph .photo-content{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3;
+    row-gap: 1em;
+    grid-template-areas:
+        "photo-text"
+        "photo-first"
+        "photo-second";
+}
+
+#photograph .photo-content p {
+    grid-area: photo-text;
+    margin-top: 8px;
+}
+
+#photograph picture img {
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+}
+
+#photograph picture.photo-first {
+    grid-area: photo-first;
+}
+
+#photograph picture.photo-second {
+    grid-area: photo-second;
+}
+
+/* Writing Post Page*/
+.writing-post {
+    padding: 1em;
+}
+
+.writing-intro {
+    font-size: 0.9em;
+}
+
+.writing-post p {
+    margin-top: 0.2em;
+    text-align: justify;
+}
+
+.writing-post p.themes {
+    font-size: 0.95em;
+    font-style: italic;
+}
+
+.writing-post h5.underline {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 1em;
+    text-decoration: underline;
+}
+
+.writing-post blockquote p {
+    font-style: italic;
+    font-weight: 200;
+    margin-bottom: 0.5em;
+}
+
+.writing-post blockquote span {
+    font-size: 0.9em;
+    padding-left: 1em;
+}
+
+/* Low-tech  */
+
+#low-tech ul {
+    list-style: "* ";
+}
+
+footer .social {
+    text-align: center;
+    margin-bottom: 1em;
+    fill: var(--text-colour);
+}
+
+.footer-copyright {
+    font-size: 0.5em;
+    text-align: center;
+    margin-top: 1em;
+}
+
+@media only screen and (min-width: 600px) {
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+
+}
+
+@media only screen and (min-width: 768px) {
+    /* Medium devices (landscape tablets, 768px and up) */
+    body {
+        padding: 3em 5em;
+    }
+    .header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        grid-gap: 1em;
+        grid-template-areas:
+            "nav nav"
+            "name picture"
+            "about picture";
+        margin-bottom: 2em;
+    }
+
+    #main-page nav {
+        grid-area: nav;
+    }
+
+    #main-page .name {
+        border: none;
+        font-size: 2em;
+        max-width: 8em;
+        text-align: right;
+        padding: 0;
+        grid-area: name;
+    }
+
+    #main-page .header picture {
+        display: block;
+        grid-area: picture;
+    }
+
+    #main-page .header picture img {
+        max-width: 300px;
+    }
+
+    #main-page .about {
+        grid-area: about;
+        width: 65%;
+        justify-self: end;
+        margin-right: 2em;
+        font-size: 1.1em;
+    }
+
+    #photograph picture.photo-first {
+        justify-self: start;
+    }
+
+    #photograph picture.photo-second {
+        justify-self: end;
+    }
+
+    .box::after {
+        margin: 2em 8em 0;
+    }
+
+}
+
+@media only screen and (min-width: 992px) {
+/* Large devices (laptops/desktops, 992px and up) */
+    body {
+        padding: 3em 5em 1em;
+    }
+
+    .body {
+        padding: 0 5em;
+    }
+    .header {
+        display: grid;
+        grid-template-columns: 2fr 1fr 2fr;
+        grid-template-rows: auto;
+        grid-gap: 2em;
+        grid-template-areas:
+            ". nav nav"
+            "name . picture"
+            "about about picture";
+        margin-bottom: 2em;
+    }
+
+    #main-page .name {
+        border: none;
+        font-size: 4em;
+        max-width: 10em;
+        text-align: right;
+        padding: 0;
+        grid-area: name;
+    }
+
+    #main-page picture {
+        grid-area: picture;
+    }
+
+    #main-page .header picture img {
+        max-width: 400px;
+    }
+
+    #main-page .about {
+        grid-area: about;
+        width: 55%;
+        justify-self: end;
+        margin-right: 2em;
+    }
+
+    #photograph .photo-content{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 2;
+        column-gap: 2em;
+        grid-template-areas:
+            "photo-text photo-text"
+            "photo-first photo-second";
+    }
+
+    #photograph picture.photo-first {
+        justify-self: start;
+    }
+
+    #photograph picture.photo-second {
+        justify-self: end;
+    }
+
+    nav {
+        flex: 1;
+        padding: 0.5em;
+    }
+    .box::after {
+        margin: 2em 8em 0;
+    }
+}
