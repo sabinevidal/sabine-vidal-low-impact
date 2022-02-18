@@ -4,7 +4,7 @@
     --pink: #DB8480;
     --green: #506C46;
     --dark: #474747;
-    --pink-light: #FFD1C2;
+    --pink-light: #F8B6A8;
     --blue-light: #AFCBD5;
     --green-light: #9BB690;
 }
@@ -15,7 +15,16 @@
         --link-colour: var(--green);
         --background-colour: var(--pale);
         --text-colour: var(--dark);
-        --extras-colour: var(--pink);
+        --extras-colour: var(--pink-light);
+    }
+    p a {
+        background: transparent;
+        background-image: linear-gradient(
+            to right,
+            rgba(248, 182, 168, 0.09),
+            rgba(248, 182, 168, 0.5) 4%,
+            rgba(248, 182, 168, 0.2)
+        );
     }
 }
 
@@ -27,14 +36,32 @@
         --text-colour: var(--pale-2);
         --extras-colour: var(--pale-2);
     }
+    p a {
+
+        background: transparent;
+        background-image: linear-gradient(
+            to right,
+            rgba(155, 182, 144, 0.06),
+            rgba(155, 182, 144, 0.35) 4%,
+            rgba(155, 182, 144, 0.2)
+        );
+    }
 }
 
 /* Defaults */
+html {
+    height: -webkit-fill-available;
+}
+
 body {
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    padding: 1.5em;
+    margin: 0;
     background-color: var(--background-colour);
     color: var(--text-colour);
+    position: relative;
+    min-height: 100vh;
+    /* mobile viewport bug fix */
+    min-height: -webkit-fill-available;
 }
 
 h1,
@@ -59,6 +86,8 @@ h2 {
 
 h3 {
     font-size: 1.2em;
+    font-weight: 300;
+    font-style: italic;
 }
 
 a {
@@ -72,22 +101,21 @@ a.active {
 }
 
 div.box {
-    margin-bottom: 1.8em;
+    margin: 1.8em 0;
 }
 
 p {
     text-align: justify;
+    line-height: 1.3em;
 }
 
-.box::after {
-    border-top: 1px var(--extras-colour) dotted;
+p a {
+    margin: 0 -0.4em;
+    padding: 0.1em 0.4em;
+    border-radius: 0.8em 0.3em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
 }
-
-#write li span.tag {
-    border: 1px var(--extras-colour) solid;
-    color: var(--text-colour);
-}
-
 
 nav {
     grid-area: nav;
@@ -96,7 +124,7 @@ nav {
 nav ul {
     list-style: none;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     margin: 0 auto 1em;
     padding: 0;
@@ -108,6 +136,17 @@ nav a {
     z-index: 1;
     padding: 0.8em;
     margin: -0.8em;
+}
+
+u {
+    text-decoration-color: var(--extras-colour);
+    text-decoration-style: wavy;
+}
+
+.container {
+    /* ;
+    min-height: 100vh; */
+    padding: 2em 1.5em 0;
 }
 
 .header {
@@ -134,7 +173,7 @@ nav a {
     text-align: right;
     margin: 0;
     justify-self: end;
-    max-width: 120px;
+    max-width: 140px;
 }
 
 .name h1 {
@@ -143,7 +182,9 @@ nav a {
     padding: 0.1em;
 }
 
-
+.content {
+    padding-bottom: 5.5em;
+}
 
 #main-page .about {
     grid-area: about;
@@ -157,26 +198,40 @@ nav a {
     display: none;
 }
 
-.box::after {
-    content: "";
-    display: block;
-    margin: 0.8em 2.5em 0;
+#code {
+    grid-area: code;
 }
 
-#write ul {
-    margin-bottom: 0.5em;
+#write {
+    grid-area: write;
+}
+
+#photograph {
+    grid-area: photo;
+}
+
+#create {
+    grid-area: create;
+}
+
+#low-tech {
+    grid-area: low-tech;
+}
+
+ul.write-list  {
+    /* margin-bottom: 0.5em; */
     list-style: none;
-    padding: 0.5em;
+    padding: 0 0.5em;
 }
 
-#write li {
+.write-list li {
     margin-bottom: 0.5em;
     list-style: none;
     padding-left: 0.5em;
     line-height: 1.2em;
 }
 
-#write li span.tag {
+.write-list li span.tag {
     border-radius: 8px;
     font-weight: 400;
     font-style: italic;
@@ -184,6 +239,8 @@ nav a {
     padding: 0em 0.5em 0.1em 0.5em;
     margin-left: 0.5em;
     line-height: 16px;
+    border: 1px var(--extras-colour) solid;
+    color: var(--text-colour);
 }
 
 #photograph .photo-content{
@@ -206,6 +263,7 @@ nav a {
     width: 100%;
     height: auto;
     max-width: 600px;
+    border: white solid 0.01px;
 }
 
 #photograph picture.photo-first {
@@ -214,6 +272,52 @@ nav a {
 
 #photograph picture.photo-second {
     grid-area: photo-second;
+}
+
+#create .create-content{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3;
+    row-gap: 1em;
+    align-items: center;
+    grid-template-areas:
+        "create-text"
+        "create-first"
+        "create-second";
+}
+
+#create .create-content p {
+    grid-area: create-text;
+    margin-top: 8px;
+}
+
+#create picture img {
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+}
+
+#create .create-content svg {
+    fill: var(--text-colour);
+}
+
+#create picture.svg {
+    padding: 1.5em 3em;
+}
+
+#create picture svg {
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+    
+}
+
+#create picture.create-first {
+    grid-area: create-first;
+}
+
+#create picture.create-second {
+    grid-area: create-second;
 }
 
 /* Writing Post Page*/
@@ -252,22 +356,66 @@ nav a {
     padding-left: 1em;
 }
 
+/* Code page */
+
+.code-page h3 {
+    margin: 0 2em;
+}
+
+.button-links {
+    /* display: grid;
+    grid-template-columns: 1fr 1fr;*/
+    gap: 1em; 
+
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content:center;
+}
+
+.button-links a {
+    font-size: 0.8em;
+    text-align: center;
+    /* border-radius: 0.75em; */
+    background: transparent;
+    display: block;
+    box-sizing: border-box;
+    border: 1px solid var(--text-colour);
+    padding: 0.5em;
+
+    width: 45%;
+    margin: auto;
+}
+
+.code-page .button-links a:hover {
+    background: var(--link-colour);
+    color: var(--background-colour);
+    border: 1px solid var(--link-colour);
+}
+
 /* Low-tech  */
 
 #low-tech ul {
     list-style: "* ";
 }
 
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4em;
+}
+
 footer .social {
     text-align: center;
-    margin-bottom: 1em;
     fill: var(--text-colour);
 }
 
 .footer-copyright {
     font-size: 0.5em;
     text-align: center;
-    margin-top: 1em;
+    padding-top: 0.5em;
 }
 
 @media only screen and (min-width: 600px) {
@@ -275,10 +423,10 @@ footer .social {
 
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 767px) {
     /* Medium devices (landscape tablets, 768px and up) */
     body {
-        padding: 3em 5em;
+        padding: 3em 5em 1em;
     }
     .header {
         display: grid;
@@ -322,6 +470,10 @@ footer .social {
         font-size: 1.1em;
     }
 
+    #create picture.svg {
+        padding: unset;
+    }
+
     #photograph picture.photo-first {
         justify-self: start;
     }
@@ -330,20 +482,36 @@ footer .social {
         justify-self: end;
     }
 
-    .box::after {
-        margin: 2em 8em 0;
+    #create picture.create-first {
+        justify-self: start;
     }
 
+    #create picture.create-second {
+        justify-self: end;
+    }
+
+    .button-links {
+        margin: 1.5em 4em 1em;
+    }
+
+    footer {
+        margin-top: 4em;
+    }
 }
 
 @media only screen and (min-width: 992px) {
 /* Large devices (laptops/desktops, 992px and up) */
     body {
-        padding: 3em 5em 1em;
+        /* padding: 3em 10em 1em; */
+        margin: 0 auto;
+        max-width: 65em;
     }
 
-    .body {
-        padding: 0 5em;
+    .content {
+        margin: 0 auto;
+        margin-bottom: inherit;
+        /* padding: 0 5em; */
+        max-width: 55em;
     }
     .header {
         display: grid;
@@ -355,6 +523,11 @@ footer .social {
             "name . picture"
             "about about picture";
         margin-bottom: 2em;
+    }
+
+    .name {
+        max-width: 140px;
+        justify-self: auto;
     }
 
     #main-page .name {
@@ -381,6 +554,21 @@ footer .social {
         margin-right: 2em;
     }
 
+    #main-page .content {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto;
+        column-gap: 3em;
+        grid-template-areas:
+            "code code write write"
+            "photo photo create create"
+            ". low-tech low-tech .";
+    }
+
+    div.box {
+        margin: 0;
+    }
+
     #photograph .photo-content{
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -399,11 +587,35 @@ footer .social {
         justify-self: end;
     }
 
+    #create .create-content{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 2;
+        column-gap: 2em;
+        grid-template-areas:
+            "create-text create-text"
+            "create-first create-second";
+    }
+
+    #create picture.create-first {
+        justify-self: start;
+    }
+
+    #create picture.create-second {
+        justify-self: end;
+    }
+
     nav {
         flex: 1;
         padding: 0.5em;
     }
-    .box::after {
-        margin: 2em 8em 0;
+
+    #low-tech ul {
+        padding-left: 0.5em;
     }
+
+    .button-links a {
+        width: 23%;
+    }
+
 }
