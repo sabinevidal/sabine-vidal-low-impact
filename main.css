@@ -214,6 +214,10 @@ u {
     grid-area: create;
 }
 
+#background {
+    grid-area: background;
+}
+
 #low-tech {
     grid-area: low-tech;
 }
@@ -263,7 +267,7 @@ ul.write-list  {
     width: 100%;
     height: auto;
     max-width: 600px;
-    border: white solid 0.01px;
+    border: var(--pale-2) solid 0.01px;
 }
 
 #photograph picture.photo-first {
@@ -309,7 +313,6 @@ ul.write-list  {
     width: 100%;
     height: auto;
     max-width: 600px;
-    
 }
 
 #create picture.create-first {
@@ -318,6 +321,15 @@ ul.write-list  {
 
 #create picture.create-second {
     grid-area: create-second;
+}
+
+#background table td {
+    padding: 0 0.5em 0.5em 0;
+    font-size: 0.85em;
+}
+#background table td.date,
+#background table td.place {
+    text-align: center;
 }
 
 /* Writing Post Page*/
@@ -559,10 +571,11 @@ footer .social {
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-template-rows: auto;
         column-gap: 3em;
+        row-gap: 2em;
         grid-template-areas:
             "code code write write"
             "photo photo create create"
-            ". low-tech low-tech .";
+            "background background low-tech low-tech";
     }
 
     div.box {
